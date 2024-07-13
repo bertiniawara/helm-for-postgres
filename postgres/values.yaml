@@ -1,0 +1,27 @@
+replicaCount: 1
+
+image:
+  repository: postgres
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "10.1"
+
+service:
+  type: NodePort
+  port: 5432
+
+persistence:
+  enabled: true
+  storageClassName: manual
+  accessMode: ReadWriteMany
+  size: 5Gi
+
+volumes:
+  data:
+    hostPath: /mnt/data
+
+database:
+  name: mydb
+  username: myuser
+  password: mypassword
+  initdbArgs: ""

@@ -1,0 +1,16 @@
+replicaCount: 1
+
+image:
+  repository: dpage/pgadmin4
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+service:
+  type: NodePort
+  port: 80
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  hostPath: /mnt/data/pgadmin
