@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ .Chart.Name | default "pgadmin-pv"}} 
+  name: {{ .Values.persistence.claimName | default "pgadmin-pv" }}
 spec:
   capacity:
     storage: {{ .Values.persistence.size }}
@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Chart.Name | default "pgadmin-pv-claim"}} 
+  name: {{ .Values.persistence.claimName | default "pgadmin-pv-claim" }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}
