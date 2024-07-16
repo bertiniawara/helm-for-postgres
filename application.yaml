@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-application
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/your-org/your-repo.git
+    path: charts/my-chart
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: my-namespace
+  dependencies:
+  - name: my-database
+    source:
+      repoURL: https://github.com/your-org/your-repo.git
+      path: charts/my-database
+      targetRevision: HEAD
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: my-database-namespace
