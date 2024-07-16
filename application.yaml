@@ -20,3 +20,9 @@ spec:
     destination:
       server: https://kubernetes.default.svc
       namespace: my-database-namespace
+    syncPolicy:
+      syncOptions:
+      - CreateNamespace=true
+      automated:
+        selfHeal: true
+        prune: true
