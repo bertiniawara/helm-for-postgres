@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: dpage/pgadmin4
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 80
+  selector:
+    app: pgadmin
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  hostPath: /mnt/data/pgadmin

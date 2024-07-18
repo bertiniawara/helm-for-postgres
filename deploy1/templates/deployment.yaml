@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name}}
+spec:
+  replicas: {{ .Values.replicaCount}}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name}}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name}}
+    spec:
+      containers:
+        - name: {{ .Chart.Name}}
+          image: "{{ .Values.image.repository}}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy}}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          env:
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: "admin@example.com"
+            - name: PGADMIN_DEFAULT_PASSWORD
+              value: "admin"
+          volumeMounts:
+            - mountPath: /var/lib/pgadmin
+              name: pgadmin-storage
+      volumes:
+        - name: pgadmin-storage
+          persistentVolumeClaim:
+            claimName: pgadmin-pv-claim
