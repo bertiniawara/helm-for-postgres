@@ -15,7 +15,7 @@ spec:
   dependencies:
   - name: my-database
     source:
-      repoURL: https://github.com/bertiniawara/helm-for-postgres/tree/main/postgres
+      repoURL: https://github.com/bertiniawara/helm-for-postgres.git
       path: deploy1/
       targetRevision: HEAD
     destination:
