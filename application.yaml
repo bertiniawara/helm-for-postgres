@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/bertiniawara/helm-for-postgres.git
-    path: postgres/Chart.yaml
+    path: deploy/
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
