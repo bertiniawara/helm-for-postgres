@@ -12,9 +12,18 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: postgres-namespace
-  syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-    automated:
-      selfHeal: true
-      prune: true
+  dependencies:
+  - name: my-database
+    source:
+      repoURL: https://github.com/bertiniawara/helm-for-postgres/tree/main/postgres
+      path: deploy1/
+      targetRevision: HEAD
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: my-database-namespace
+    syncPolicy:
+      syncOptions:
+      - CreateNamespace=true
+      automated:
+        selfHeal: true
+        prune: true
